@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PARALLAX — Nyx & Egoo</title>
+  <title>PARALLAX â Nyx & Egoo</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,7 +16,7 @@
     #svg-filters { position:absolute; width:0; height:0; overflow:hidden; }
     #starfield   { position:fixed; inset:0; z-index:0; pointer-events:none; }
 
-    /* ── PAGE SYSTEM ── */
+    /* ââ PAGE SYSTEM ââ */
     .page {
       position:fixed; inset:0; z-index:5;
       display:flex; flex-direction:column;
@@ -39,7 +39,7 @@
       will-change:transform,opacity;
     }
 
-    /* ══ PAGE 0 — HERO ══ */
+    /* ââ PAGE 0 â HERO ââ */
     .hands-img {
       position:absolute; top:50%; left:50%;
       width:min(720px,90vw); height:min(720px,90vw);
@@ -98,7 +98,7 @@
     .scroll-line { width:1px; height:34px; background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent); }
     @keyframes hintBob { 0%,100%{transform:translateX(-50%) translateY(0);opacity:.5;} 50%{transform:translateX(-50%) translateY(5px);opacity:.85;} }
 
-    /* ══ PAGE 1 — PROFILES ══ */
+    /* ââ PAGE 1 â PROFILES ââ */
     #page-profiles {
       background:linear-gradient(180deg,#000 0%,#04001a 40%,#0a0520 70%,#04001a 100%);
       overflow:hidden;
@@ -117,7 +117,7 @@
       text-align:center;
     }
 
-    /* ─ Silhouette portrait ─ */
+    /* â Silhouette portrait â */
     .sil-wrap {
       width:min(340px,40vw); height:min(380px,44vw);
       position:relative; display:flex; align-items:center; justify-content:center;
@@ -153,7 +153,7 @@
     .page-nav span { font-size:.58rem; letter-spacing:.3rem; text-transform:uppercase; color:rgba(255,255,255,.3); }
     .page-nav .arrow { width:1px; height:34px; background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent); }
 
-    /* ══ PAGE 2 — SKILLS ══ */
+    /* ââ PAGE 2 â SKILLS ââ */
     #page-skills {
       background:linear-gradient(135deg,#000 0%,#04001a 50%,#000 100%);
       flex-direction:row;
@@ -163,7 +163,7 @@
       padding:0;
     }
 
-    /* Left panel — no scroll, 2-col grid */
+    /* Left panel â no scroll, 2-col grid */
     .skills-left {
       flex:0 0 54%;
       display:flex; flex-direction:column;
@@ -221,7 +221,7 @@
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
-    /* Right panel — asset */
+    /* Right panel â asset */
     .skills-right {
       flex:1;
       display:flex; align-items:center; justify-content:center;
@@ -241,7 +241,7 @@
       pointer-events:none;
     }
 
-    /* ── RESPONSIVE / MOBILE ── */
+    /* ââ RESPONSIVE / MOBILE ââ */
     @media (max-width:768px) {
       /* Fix pages to use full dynamic viewport */
       .page { position:fixed; inset:0; height:100%; height:100dvh; }
@@ -252,7 +252,7 @@
       .orb { width:180px; height:180px; }
       .orb-ring { width:260px; height:82px; margin-left:-130px; margin-top:-41px; }
 
-      /* Profiles — stack vertically */
+      /* Profiles â stack vertically */
       #page-profiles { padding:1.5rem 1rem; justify-content:center; }
       .section-eyebrow { margin-bottom:1.5rem; font-size:.55rem; }
       .profiles-container { flex-direction:column; align-items:center; gap:1.5rem; max-width:100%; }
@@ -267,7 +267,7 @@
       .profile-role { font-size:.6rem; }
       .profile-bio { font-size:.75rem; max-width:180px; }
 
-      /* Skills — single column stacked */
+      /* Skills â single column stacked */
       #page-skills { flex-direction:column; }
       .skills-left { flex:1; height:auto; padding:2rem 1.2rem 1rem; justify-content:flex-start; overflow-y:auto; }
       .skills-right { flex:0 0 35%; min-height:35%; }
@@ -280,7 +280,7 @@
       .skills-header { margin-bottom:1rem; }
     }
 
-    /* ══ PAGE 3 — PORTFOLIO ══ */
+    /* ââ PAGE 3 â PORTFOLIO ââ */
     #page-portfolio {
       background: #020814;
       flex-direction: column;
@@ -486,7 +486,7 @@
 <canvas id="starfield"></canvas>
 <div id="orb-bloom"></div>
 
-<!-- ══ PAGE 0 — HERO ══ -->
+<!-- ââ PAGE 0 â HERO ââ -->
 <section id="page-hero" class="page">
   <div id="orb-wrap"><div class="orb-ring"></div><div class="orb"></div></div>
   <img class="hands-img" src="hands-asset.png" alt="" />
@@ -495,7 +495,7 @@
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
 
-<!-- ══ PAGE 1 — PROFILES ══ -->
+<!-- ââ PAGE 1 â PROFILES ââ -->
 <section id="page-profiles" class="page">
   <p class="section-eyebrow">The Creators</p>
   <div class="profiles-container">
@@ -532,7 +532,7 @@
   <div class="page-nav" id="nav-to-skills"><span>Skills</span><div class="arrow"></div></div>
 </section>
 
-<!-- ══ PAGE 2 — SKILLS ══ -->
+<!-- ââ PAGE 2 â SKILLS ââ -->
 <section id="page-skills" class="page">
 
   <!-- LEFT: skill list with logos -->
@@ -551,7 +551,7 @@
 
 </section>
 
-<!-- ══ PAGE 3 — PORTFOLIO ══ -->
+<!-- ââ PAGE 3 â PORTFOLIO ââ -->
 <section id="page-portfolio" class="page">
 
   <!-- Neon map grid canvas -->
@@ -641,16 +641,16 @@
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox">
     <div class="lb-backdrop"></div>
-    <button class="lb-close">✕</button>
-    <button class="lb-prev">‹</button>
-    <button class="lb-next">›</button>
+    <button class="lb-close">â</button>
+    <button class="lb-prev">â¹</button>
+    <button class="lb-next">âº</button>
     <img class="lb-img" src="" alt="" />
   </div>
 
 </section>
 
 <script>
-/* ── INIT PAGES ── */
+/* ââ INIT PAGES ââ */
 (function(){
   document.getElementById('page-hero').className      = 'page current';
   document.getElementById('page-profiles').className  = 'page below';
@@ -658,7 +658,7 @@
   document.getElementById('page-portfolio').className = 'page below';
 })();
 
-/* ── STARFIELD ── */
+/* ââ STARFIELD ââ */
 const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d');
 let stars=[],W,H,frame=0;
 function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
@@ -667,7 +667,7 @@ function drawStars(){ctx.clearRect(0,0,W,H);frame+=.016;stars.forEach(s=>{const 
 window.addEventListener('resize',()=>{resize();initStars();});
 resize();initStars();drawStars();
 
-/* ── SKILLS DATA ── */
+/* ââ SKILLS DATA ââ */
 const SKILLS = [
   { name:'Photoshop',     icon:'https://cdn.simpleicons.org/adobephotoshop/ffffff' },
   { name:'Illustrator',   icon:'https://cdn.simpleicons.org/adobeillustrator/ffffff' },
@@ -702,7 +702,7 @@ SKILLS.forEach((s,i)=>{
   list.appendChild(row);
 });
 
-/* ── PAGE STATE ── */
+/* ââ PAGE STATE ââ */
 let currentPage=0, isAnimating=false;
 const bloom=document.getElementById('orb-bloom');
 const handsImg=document.querySelector('.hands-img');
@@ -712,7 +712,7 @@ const heroSub=document.querySelector('.hero-sub');
 const PAGE_IDS=['page-hero','page-profiles','page-skills','page-portfolio'];
 function setPage(idx,cls){document.getElementById(PAGE_IDS[idx]).className='page '+cls;}
 
-/* 0→1 */
+/* 0â1 */
 function heroToProfiles(){
   isAnimating=true;
   const diag=Math.sqrt(W*W+H*H), tgt=(diag/260)*2.4;
@@ -735,7 +735,7 @@ function heroToProfiles(){
   },680);
 }
 
-/* 1→0 */
+/* 1â0 */
 function profilesToHero(){
   isAnimating=true;
   document.getElementById('profile-egoo').classList.remove('approached');
@@ -753,7 +753,7 @@ function profilesToHero(){
   setTimeout(()=>{ isAnimating=false; },950);
 }
 
-/* 1→2 */
+/* 1â2 */
 function profilesToSkills(){
   isAnimating=true;
   setPage(1,'above'); setPage(2,'current'); currentPage=2;
@@ -762,7 +762,7 @@ function profilesToSkills(){
   setTimeout(()=>{ isAnimating=false; },1000);
 }
 
-/* 2→1 */
+/* 2â1 */
 function skillsToProfiles(){
   isAnimating=true;
   document.querySelectorAll('.skill-row').forEach(el=>el.classList.remove('visible'));
@@ -770,14 +770,14 @@ function skillsToProfiles(){
   setTimeout(()=>{ isAnimating=false; },1000);
 }
 
-/* 2→3 */
+/* 2â3 */
 function skillsToPortfolio(){
   isAnimating=true;
   setPage(2,'above'); setPage(3,'current'); currentPage=3;
   initMapGrid();
   setTimeout(()=>{ isAnimating=false; },1000);
 }
-/* 3→2 */
+/* 3â2 */
 function portfolioToSkills(){
   isAnimating=true;
   setPage(3,'below'); setPage(2,'current'); currentPage=2;
@@ -787,7 +787,7 @@ function portfolioToSkills(){
 function goForward(){ if(!isAnimating){ if(currentPage===0)heroToProfiles(); else if(currentPage===1)profilesToSkills(); else if(currentPage===2)skillsToPortfolio(); } }
 function goBack(){    if(!isAnimating){ if(currentPage===1)profilesToHero(); else if(currentPage===2)skillsToProfiles(); else if(currentPage===3)portfolioToSkills(); } }
 
-/* ── INPUT ── */
+/* ââ INPUT ââ */
 let wAccum=0, wTimer=null;
 window.addEventListener('wheel',e=>{
   e.preventDefault();
@@ -811,9 +811,9 @@ window.addEventListener('touchend',e=>{
 
 document.getElementById('nav-to-skills').addEventListener('click',goForward);
 
-/* ══════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââ
    NEON MAP GRID
-══════════════════════════════════ */
+ââââââââââââââââââââââââââââââââââ */
 function initMapGrid() {
   const mc = document.getElementById('map-grid');
   if (!mc) return;
@@ -867,9 +867,9 @@ function initMapGrid() {
   }
 }
 
-/* ══════════════════════════════════
+/* ââââââââââââââââââââââââââââââââââ
    PORTFOLIO DATA
-══════════════════════════════════ */
+ââââââââââââââââââââââââââââââââââ */
 const PORTFOLIO = {
   logo: [
     'designs/bobby/ACMHN Logo.jpeg',
@@ -966,6 +966,7 @@ const PORTFOLIO = {
   print: [
     'designs/bobby/Bergeron Car Wrap.png',
     'designs/bobby/Environtmental Friendly Car Wrap.jpeg',
+    'designs/bobby/Genesis Print.jpeg',
     'designs/bobby/Halls Creek 4WD Car Wrap.png',
     'designs/bobby/Hunter of Man Book Cover.jpeg',
     'designs/bobby/Paws Place Car Wrap.png',
@@ -1009,7 +1010,7 @@ Object.entries(PORTFOLIO).forEach(([cat, files]) => {
     img.loading = 'lazy';
     card.appendChild(img);
 
-    // Click → open lightbox on that category
+    // Click â open lightbox on that category
     card.addEventListener('click', (e) => {
       e.stopPropagation();
       openLightbox(cat, files.indexOf(src) >= 0 ? files.indexOf(src) : 0, files);
@@ -1052,7 +1053,7 @@ document.querySelectorAll('.cat-folder').forEach(folder => {
   });
 });
 
-/* ══ LIGHTBOX ══ */
+/* ââ LIGHTBOX ââ */
 let lbFiles = [], lbIdx = 0;
 const lb = document.getElementById('lightbox');
 const lbImg = lb.querySelector('.lb-img');
