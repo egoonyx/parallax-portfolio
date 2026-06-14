@@ -477,7 +477,49 @@
       align-items: center;
       overflow: hidden;
       gap: 0;
+      position: relative;
     }
+    .svc-bg {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .svc-blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55;
+    }
+    .svc-blob-1 {
+      width: 520px; height: 520px; top: -160px; left: -120px;
+      background: radial-gradient(circle, rgba(130,40,255,.55) 0%, transparent 70%);
+      animation: blobDrift1 11s ease-in-out infinite;
+    }
+    .svc-blob-2 {
+      width: 420px; height: 420px; bottom: -100px; right: -80px;
+      background: radial-gradient(circle, rgba(40,60,255,.45) 0%, transparent 70%);
+      animation: blobDrift2 13s ease-in-out infinite;
+    }
+    .svc-blob-3 {
+      width: 300px; height: 300px; top: 40%; left: 42%;
+      background: radial-gradient(circle, rgba(90,20,200,.3) 0%, transparent 70%);
+      animation: blobDrift3 9s ease-in-out infinite;
+    }
+    .svc-blob-4 {
+      width: 200px; height: 200px; top: 10%; right: 18%;
+      background: radial-gradient(circle, rgba(180,80,255,.25) 0%, transparent 70%);
+      animation: blobDrift1 14s ease-in-out infinite reverse;
+    }
+    @keyframes blobDrift1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(40px,30px);} }
+    @keyframes blobDrift2 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-35px,-40px);} }
+    @keyframes blobDrift3 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(20px,-25px) scale(1.15);} }
+    /* Floating sparkle dots */
+    .svc-spark {
+      position: absolute; border-radius: 50%;
+      background: rgba(200,160,255,.6);
+      animation: sparkFloat linear infinite;
+    }
+    @keyframes sparkFloat {
+      0%   { transform: translateY(0) scale(1);   opacity: .6; }
+      50%  { opacity: 1; }
+      100% { transform: translateY(-80px) scale(.4); opacity: 0; }
+    }
+    .services-inner { position: relative; z-index: 1; }
     .services-inner {
       width: 100%; max-width: 1200px;
       padding: 1.5rem 2rem;
@@ -940,6 +982,12 @@
 
 <!-- ══ PAGE 4 — SERVICES ══ -->
 <section id="page-services" class="page">
+  <div class="svc-bg" id="svc-bg">
+    <div class="svc-blob svc-blob-1"></div>
+    <div class="svc-blob svc-blob-2"></div>
+    <div class="svc-blob svc-blob-3"></div>
+    <div class="svc-blob svc-blob-4"></div>
+  </div>
   <div class="services-inner">
     <div class="services-header">
       <p class="svc-label">WHAT WE DO</p>
@@ -1300,6 +1348,26 @@ window.addEventListener('touchend',e=>{
 },{passive:true});
 
 document.getElementById('nav-to-skills').addEventListener('click',goForward);
+
+/* ── SERVICES BG SPARKS ── */
+(function(){
+  const bg = document.getElementById('svc-bg');
+  const count = 18;
+  for(let i=0;i<count;i++){
+    const s = document.createElement('div');
+    s.className = 'svc-spark';
+    const size = 2 + Math.random()*3;
+    s.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      top:${20+Math.random()*75}%;
+      animation-duration:${4+Math.random()*6}s;
+      animation-delay:${Math.random()*6}s;
+      opacity:${0.3+Math.random()*0.5};
+    `;
+    bg.appendChild(s);
+  }
+})();
 
 /* ══════════════════════════════════
    NEON MAP GRID
