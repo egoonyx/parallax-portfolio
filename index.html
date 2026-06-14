@@ -299,12 +299,12 @@
 
     .portfolio-header {
       text-align: center;
-      margin-bottom: 2.2rem;
+      margin-bottom: 3rem;
       position: relative; z-index: 2;
     }
     .port-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-size: clamp(2rem, 5vw, 3.4rem);
       font-weight: 900; letter-spacing: .2em;
       background: linear-gradient(135deg, #fff 0%, #cc99ff 50%, #9933ff 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -318,9 +318,9 @@
     /* Row of folders */
     .categories-row {
       display: flex; align-items: flex-end; justify-content: center;
-      gap: clamp(.6rem, 1.8vw, 1.8rem);
+      gap: clamp(1rem, 2.5vw, 2.8rem);
       position: relative; z-index: 2;
-      padding: 0 1rem;
+      padding: 0 2rem;
       flex-wrap: nowrap;
     }
 
@@ -330,7 +330,7 @@
       cursor: pointer;
       position: relative;
       flex-shrink: 0;
-      width: clamp(90px, 12vw, 148px);
+      width: clamp(120px, 14vw, 185px);
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
@@ -380,15 +380,15 @@
 
     .cat-name {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(.55rem, 1vw, .78rem);
+      font-size: clamp(.65rem, 1.1vw, .92rem);
       font-weight: 700; letter-spacing: .05em;
       color: rgba(255,255,255,.92); text-align: center;
-      margin-top: .75rem;
+      margin-top: .85rem;
     }
     .cat-desc {
-      font-size: clamp(.48rem, .8vw, .62rem);
+      font-size: clamp(.55rem, .9vw, .72rem);
       color: rgba(180,100,255,.6); text-align: center;
-      letter-spacing: .03em; margin-top: .15rem;
+      letter-spacing: .03em; margin-top: .2rem;
     }
 
     /* Fan of cards that spreads on hover */
@@ -473,7 +473,7 @@
       .fan-card { width: 75px; height: 60px; }
       .portfolio-header { margin-bottom: 1.4rem; }
       .port-sub { font-size: .52rem; letter-spacing: .22rem; }
-      .port-title { font-size: clamp(1.4rem, 7vw, 2rem); }
+      .port-title { font-size: clamp(1.7rem, 8vw, 2.4rem); }
       .lb-prev { left: .5rem; width: 38px; height: 38px; font-size: 1.2rem; }
       .lb-next { right: .5rem; width: 38px; height: 38px; font-size: 1.2rem; }
     }
@@ -799,25 +799,41 @@ function goForward(){ if(!isAnimating){ if(currentPage===0)heroToProfiles(); els
 function goBack(){    if(!isAnimating){ if(currentPage===1)profilesToHero(); else if(currentPage===2)skillsToProfiles(); else if(currentPage===3)portfolioToSkills(); } }
 
 /* ── INPUT ── */
-let wAccum=0, wTimer=null;
+let wLocked=false;
+function triggerNav(dir){
+  if(wLocked||isAnimating)return;
+  wLocked=true;
+  setTimeout(()=>{wLocked=false;},900);
+  if(dir>0)goForward(); else goBack();
+}
+
 window.addEventListener('wheel',e=>{
   e.preventDefault();
+  if(wLocked||isAnimating)return;
   if(currentPage===2){
     const sl=document.getElementById('skills-left');
-    if(e.deltaY<0&&sl.scrollTop<=0){ wAccum+=Math.abs(e.deltaY); }
-    else if(e.deltaY>0&&sl.scrollTop+sl.clientHeight>=sl.scrollHeight-2){ /* bottom */ }
-    else{ sl.scrollTop+=e.deltaY; wAccum=0; return; }
-  } else { wAccum+=Math.abs(e.deltaY); }
-  clearTimeout(wTimer); wTimer=setTimeout(()=>{wAccum=0;},300);
-  if(wAccum>=60){ wAccum=0; if(e.deltaY>0)goForward(); else goBack(); }
+    const atBottom=sl.scrollTop+sl.clientHeight>=sl.scrollHeight-4;
+    const atTop=sl.scrollTop<=0;
+    if(e.deltaY>0&&!atBottom){sl.scrollTop+=e.deltaY*2;return;}
+    if(e.deltaY<0&&!atTop){sl.scrollTop+=e.deltaY*2;return;}
+  }
+  triggerNav(e.deltaY);
 },{passive:false});
 
-let tStartY=0;
-window.addEventListener('touchstart',e=>{tStartY=e.touches[0].clientY;},{passive:true});
+/* keyboard arrows */
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='PageDown')triggerNav(1);
+  if(e.key==='ArrowUp'||e.key==='PageUp')triggerNav(-1);
+});
+
+/* touch swipe */
+let tStartY=0,tStartX=0;
+window.addEventListener('touchstart',e=>{tStartY=e.touches[0].clientY;tStartX=e.touches[0].clientX;},{passive:true});
 window.addEventListener('touchend',e=>{
   const dy=tStartY-e.changedTouches[0].clientY;
-  if(Math.abs(dy)<50)return;
-  if(dy>0)goForward(); else goBack();
+  const dx=Math.abs(tStartX-e.changedTouches[0].clientX);
+  if(dx>Math.abs(dy)||Math.abs(dy)<30)return; // ignore horizontal or tiny swipes
+  triggerNav(dy);
 },{passive:true});
 
 document.getElementById('nav-to-skills').addEventListener('click',goForward);
@@ -1078,18 +1094,20 @@ document.querySelectorAll('.cat-folder').forEach(folder => {
     }
   });
 
-  // Touch: brief fan spread then open
+  // Touch: tap to open (don't prevent default so page swipes still work)
+  let touchStartY = 0;
   folder.addEventListener('touchstart', (e) => {
-    e.preventDefault();
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  folder.addEventListener('touchend', (e) => {
+    const dy = Math.abs(touchStartY - e.changedTouches[0].clientY);
+    if (dy > 20) return; // was a swipe, ignore
     spreadFan();
     const cat = folder.dataset.cat;
     const files = PORTFOLIO[cat];
     if (!files || !files.length) return;
-    setTimeout(() => {
-      collapseFan();
-      openLightbox(cat, 0, files);
-    }, 350);
-  }, { passive: false });
+    setTimeout(() => { collapseFan(); openLightbox(cat, 0, files); }, 320);
+  }, { passive: true });
 });
 
 /* ══ LIGHTBOX ══ */
