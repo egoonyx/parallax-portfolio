@@ -260,7 +260,7 @@
       .sil-wrap { width:min(140px,38vw); height:min(160px,43vw); }
       #profile-egoo .sil-wrap { transform:translateX(-40px); }
       #profile-egoo.approached .sil-wrap { transform:translateX(0); }
-      #nyx-sil-wrap { transform:translateX(0) !important; }
+      /* NYX slides in from left (same direction as Egoo) on mobile — handled by JS */
       .profile-card { flex-direction:row; gap:1rem; max-width:100%; align-items:center; text-align:left; }
       .profile-info { text-align:left; }
       .profile-name { font-size:1.2rem; }
@@ -760,16 +760,16 @@
 
     /* ── MOBILE RESPONSIVE ── */
     @media (max-width: 768px) {
-      /* 2-row grid: 3 folders per row */
+      /* 2-per-row grid: 3 rows of 2 folders */
       .categories-row {
         flex-wrap: wrap;
         justify-content: center;
         overflow-x: hidden;
-        gap: .9rem .5rem;
-        padding: 0 .75rem .5rem;
+        gap: 1rem .6rem;
+        padding: 0 1rem .5rem;
         width: 100%;
       }
-      .cat-folder { width: calc(33.33% - .5rem); min-width: 88px; }
+      .cat-folder { width: calc(50% - .4rem); min-width: 130px; }
       .card-fan { width: 150px; height: 120px; }
       .fan-card { width: 75px; height: 60px; }
       .portfolio-header { margin-bottom: 1.4rem; }
@@ -850,7 +850,7 @@
 
     <!-- NYX -->
     <div class="profile-card" id="profile-nyx">
-      <div class="sil-wrap" id="nyx-sil-wrap" style="transform:translateX(100px);border-radius:50%;overflow:hidden;background:none;">
+      <div class="sil-wrap" id="nyx-sil-wrap" style="border-radius:50%;overflow:hidden;background:none;">
         <img class="sil-img" src="photo-nyx.png" alt="Nyx"
              style="filter:none;object-fit:cover;border-radius:50%;" />
       </div>
@@ -1135,6 +1135,9 @@
   document.getElementById('page-portfolio').className = 'page below';
   document.getElementById('page-services').className  = 'page below';
   document.getElementById('page-contact').className   = 'page below';
+  /* Set NYX initial offset matching viewport */
+  const nyxInit=document.getElementById('nyx-sil-wrap');
+  if(nyxInit) nyxInit.style.transform=window.innerWidth<=768?'translateX(-40px)':'translateX(100px)';
 })();
 
 /* ── STARFIELD ── */
@@ -1208,7 +1211,13 @@ function heroToProfiles(){
     bloom.style.transition='opacity .5s ease'; bloom.style.opacity='0';
     setTimeout(()=>{
       document.getElementById('profile-egoo').classList.add('approached');
-      document.getElementById('nyx-sil-wrap').style.cssText=`transition:transform 1.2s cubic-bezier(.25,.46,.45,.94);transform:translateX(0)`;
+      /* start NYX from correct side then animate to center */
+      const nyxEl=document.getElementById('nyx-sil-wrap');
+      const nyxStart=window.innerWidth<=768?'-40px':'100px';
+      nyxEl.style.cssText=`transition:none;transform:translateX(${nyxStart})`;
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        nyxEl.style.cssText=`transition:transform 1.2s cubic-bezier(.25,.46,.45,.94);transform:translateX(0)`;
+      }));
     },200);
     setTimeout(()=>{ bloom.style.transform='scale(0)'; bloom.style.borderRadius='50%'; isAnimating=false; },650);
   },680);
@@ -1218,7 +1227,7 @@ function heroToProfiles(){
 function profilesToHero(){
   isAnimating=true;
   document.getElementById('profile-egoo').classList.remove('approached');
-  document.getElementById('nyx-sil-wrap').style.cssText='transition:none;transform:translateX(100px)';
+  document.getElementById('nyx-sil-wrap').style.cssText=`transition:none;transform:translateX(${window.innerWidth<=768?'-40px':'100px'})`;
   const diag=Math.sqrt(W*W+H*H), tgt=(diag/260)*2.4;
   bloom.style.cssText=`transform:scale(${tgt*1.3});opacity:1;border-radius:0;transition:none;`;
   setTimeout(()=>{ setPage(1,'below'); setPage(0,'current'); currentPage=0; handsImg.style.opacity='0'; heroTitle.style.opacity='0'; heroSub.style.opacity='0'; },50);
@@ -1266,8 +1275,9 @@ function portfolioToSkills(){
 /* 3→4 */
 function portfolioToServices(){
   isAnimating=true;
-  setPage(3,'above'); setPage(4,'current'); currentPage=4;
   document.getElementById('page-services').scrollTop=0;
+  document.getElementById('page-contact').scrollTop=0;
+  setPage(3,'above'); setPage(4,'current'); currentPage=4;
   setTimeout(()=>{ isAnimating=false; },1000);
 }
 /* 4→3 */
@@ -1337,7 +1347,15 @@ window.addEventListener('touchend',e=>{
   if(galleryEl.classList.contains('open')||lb.classList.contains('open'))return;
   const dy=tStartY-e.changedTouches[0].clientY;
   const dx=Math.abs(tStartX-e.changedTouches[0].clientX);
-  if(dx>Math.abs(dy)||Math.abs(dy)<30)return;
+  if(dx>Math.abs(dy)||Math.abs(dy)<40)return;
+  /* Don't navigate if the current page still has internal scroll room */
+  const curEl=document.getElementById(PAGE_IDS[currentPage]);
+  if(curEl){
+    const atBottom=curEl.scrollTop+curEl.clientHeight>=curEl.scrollHeight-8;
+    const atTop=curEl.scrollTop<=8;
+    if(dy>0&&!atBottom)return; /* swiping down but not at bottom yet */
+    if(dy<0&&!atTop)return;   /* swiping up but not at top yet */
+  }
   triggerNav(dy);
 },{passive:true});
 
