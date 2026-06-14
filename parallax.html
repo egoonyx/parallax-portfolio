@@ -799,25 +799,41 @@ function goForward(){ if(!isAnimating){ if(currentPage===0)heroToProfiles(); els
 function goBack(){    if(!isAnimating){ if(currentPage===1)profilesToHero(); else if(currentPage===2)skillsToProfiles(); else if(currentPage===3)portfolioToSkills(); } }
 
 /* ── INPUT ── */
-let wAccum=0, wTimer=null;
+let wLocked=false;
+function triggerNav(dir){
+  if(wLocked||isAnimating)return;
+  wLocked=true;
+  setTimeout(()=>{wLocked=false;},900);
+  if(dir>0)goForward(); else goBack();
+}
+
 window.addEventListener('wheel',e=>{
   e.preventDefault();
+  if(wLocked||isAnimating)return;
   if(currentPage===2){
     const sl=document.getElementById('skills-left');
-    if(e.deltaY<0&&sl.scrollTop<=0){ wAccum+=Math.abs(e.deltaY); }
-    else if(e.deltaY>0&&sl.scrollTop+sl.clientHeight>=sl.scrollHeight-2){ wAccum+=Math.abs(e.deltaY); }
-    else{ sl.scrollTop+=e.deltaY; wAccum=0; return; }
-  } else { wAccum+=Math.abs(e.deltaY); }
-  clearTimeout(wTimer); wTimer=setTimeout(()=>{wAccum=0;},300);
-  if(wAccum>=60){ wAccum=0; if(e.deltaY>0)goForward(); else goBack(); }
+    const atBottom=sl.scrollTop+sl.clientHeight>=sl.scrollHeight-4;
+    const atTop=sl.scrollTop<=0;
+    if(e.deltaY>0&&!atBottom){sl.scrollTop+=e.deltaY*2;return;}
+    if(e.deltaY<0&&!atTop){sl.scrollTop+=e.deltaY*2;return;}
+  }
+  triggerNav(e.deltaY);
 },{passive:false});
 
-let tStartY=0;
-window.addEventListener('touchstart',e=>{tStartY=e.touches[0].clientY;},{passive:true});
+/* keyboard arrows */
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='PageDown')triggerNav(1);
+  if(e.key==='ArrowUp'||e.key==='PageUp')triggerNav(-1);
+});
+
+/* touch swipe */
+let tStartY=0,tStartX=0;
+window.addEventListener('touchstart',e=>{tStartY=e.touches[0].clientY;tStartX=e.touches[0].clientX;},{passive:true});
 window.addEventListener('touchend',e=>{
   const dy=tStartY-e.changedTouches[0].clientY;
-  if(Math.abs(dy)<50)return;
-  if(dy>0)goForward(); else goBack();
+  const dx=Math.abs(tStartX-e.changedTouches[0].clientX);
+  if(dx>Math.abs(dy)||Math.abs(dy)<30)return; // ignore horizontal or tiny swipes
+  triggerNav(dy);
 },{passive:true});
 
 document.getElementById('nav-to-skills').addEventListener('click',goForward);
