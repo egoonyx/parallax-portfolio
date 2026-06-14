@@ -805,7 +805,7 @@ window.addEventListener('wheel',e=>{
   if(currentPage===2){
     const sl=document.getElementById('skills-left');
     if(e.deltaY<0&&sl.scrollTop<=0){ wAccum+=Math.abs(e.deltaY); }
-    else if(e.deltaY>0&&sl.scrollTop+sl.clientHeight>=sl.scrollHeight-2){ /* bottom */ }
+    else if(e.deltaY>0&&sl.scrollTop+sl.clientHeight>=sl.scrollHeight-2){ wAccum+=Math.abs(e.deltaY); }
     else{ sl.scrollTop+=e.deltaY; wAccum=0; return; }
   } else { wAccum+=Math.abs(e.deltaY); }
   clearTimeout(wTimer); wTimer=setTimeout(()=>{wAccum=0;},300);
