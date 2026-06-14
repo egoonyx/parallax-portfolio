@@ -472,6 +472,7 @@
     /* ══ PAGE 4 — SERVICES ══ */
     #page-services {
       background: #06010e;
+      display: flex !important;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -519,11 +520,12 @@
       50%  { opacity: 1; }
       100% { transform: translateY(-80px) scale(.4); opacity: 0; }
     }
-    .services-inner { position: relative; z-index: 1; }
     .services-inner {
+      position: relative; z-index: 1;
       width: 100%; max-width: 1200px;
       padding: 1.5rem 2rem;
       box-sizing: border-box;
+      margin: auto;
     }
     .services-header {
       text-align: center;
