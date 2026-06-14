@@ -126,15 +126,9 @@
     }
     .sil-img { width:100%; height:100%; object-fit:contain; display:block; }
 
-    /* Egoo image: zoom in to match Nyx's visual scale using background trick */
+    /* Egoo real photo */
     #profile-egoo .sil-img {
-      display: none;
-    }
-    #profile-egoo .sil-wrap {
-      background: url('silhouette-egoo.png') no-repeat;
-      background-size: 150%;
-      background-position: 22% 22%;
-      filter: url(#rm-white);
+      display: block;
     }
 
     #profile-egoo .sil-wrap { transform:translateX(-100px); }
@@ -508,8 +502,8 @@
 
     <!-- EGOO -->
     <div class="profile-card" id="profile-egoo">
-      <div class="sil-wrap">
-        <img class="sil-img" src="silhouette-egoo.png" alt="Egoo" style="filter:url(#rm-white);" />
+      <div class="sil-wrap" style="border-radius:50%;overflow:hidden;background:none;">
+        <img class="sil-img" src="photo-egoo.png" alt="Egoo" style="filter:none;object-fit:cover;border-radius:50%;" />
       </div>
       <div class="profile-info">
         <h2 class="profile-name">EGOO</h2>
@@ -521,11 +515,11 @@
 
     <div class="profiles-divider"></div>
 
-    <!-- NYX — mirrored silhouette facing left, purple -->
+    <!-- NYX -->
     <div class="profile-card" id="profile-nyx">
-      <div class="sil-wrap" id="nyx-sil-wrap" style="transform:translateX(100px);">
-        <img class="sil-img" src="silhouette-nyx.png" alt="Nyx"
-             style="filter:url(#rm-white);" />
+      <div class="sil-wrap" id="nyx-sil-wrap" style="transform:translateX(100px);border-radius:50%;overflow:hidden;background:none;">
+        <img class="sil-img" src="photo-nyx.png" alt="Nyx"
+             style="filter:none;object-fit:cover;border-radius:50%;" />
       </div>
       <div class="profile-info">
         <h2 class="profile-name">NYX</h2>
