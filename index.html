@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PARALLAX â Nyx & Egoo</title>
+  <title>PARALLAX — Nyx & Egoo</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,7 +16,7 @@
     #svg-filters { position:absolute; width:0; height:0; overflow:hidden; }
     #starfield   { position:fixed; inset:0; z-index:0; pointer-events:none; }
 
-    /* ââ PAGE SYSTEM ââ */
+    /* ── PAGE SYSTEM ── */
     .page {
       position:fixed; inset:0; z-index:5;
       display:flex; flex-direction:column;
@@ -39,7 +39,7 @@
       will-change:transform,opacity;
     }
 
-    /* ââ PAGE 0 â HERO ââ */
+    /* ══ PAGE 0 — HERO ══ */
     .hands-img {
       position:absolute; top:50%; left:50%;
       width:min(720px,90vw); height:min(720px,90vw);
@@ -98,7 +98,7 @@
     .scroll-line { width:1px; height:34px; background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent); }
     @keyframes hintBob { 0%,100%{transform:translateX(-50%) translateY(0);opacity:.5;} 50%{transform:translateX(-50%) translateY(5px);opacity:.85;} }
 
-    /* ââ PAGE 1 â PROFILES ââ */
+    /* ══ PAGE 1 — PROFILES ══ */
     #page-profiles {
       background:linear-gradient(180deg,#000 0%,#04001a 40%,#0a0520 70%,#04001a 100%);
       overflow:hidden;
@@ -117,7 +117,7 @@
       text-align:center;
     }
 
-    /* â Silhouette portrait â */
+    /* ─ Silhouette portrait ─ */
     .sil-wrap {
       width:min(340px,40vw); height:min(380px,44vw);
       position:relative; display:flex; align-items:center; justify-content:center;
@@ -153,7 +153,7 @@
     .page-nav span { font-size:.58rem; letter-spacing:.3rem; text-transform:uppercase; color:rgba(255,255,255,.3); }
     .page-nav .arrow { width:1px; height:34px; background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent); }
 
-    /* ââ PAGE 2 â SKILLS ââ */
+    /* ══ PAGE 2 — SKILLS ══ */
     #page-skills {
       background:linear-gradient(135deg,#000 0%,#04001a 50%,#000 100%);
       flex-direction:row;
@@ -163,7 +163,7 @@
       padding:0;
     }
 
-    /* Left panel â no scroll, 2-col grid */
+    /* Left panel — no scroll, 2-col grid */
     .skills-left {
       flex:0 0 54%;
       display:flex; flex-direction:column;
@@ -221,7 +221,7 @@
       white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
-    /* Right panel â asset */
+    /* Right panel — asset */
     .skills-right {
       flex:1;
       display:flex; align-items:center; justify-content:center;
@@ -241,7 +241,7 @@
       pointer-events:none;
     }
 
-    /* ââ RESPONSIVE / MOBILE ââ */
+    /* ── RESPONSIVE / MOBILE ── */
     @media (max-width:768px) {
       /* Fix pages to use full dynamic viewport */
       .page { position:fixed; inset:0; height:100%; height:100dvh; }
@@ -252,7 +252,7 @@
       .orb { width:180px; height:180px; }
       .orb-ring { width:260px; height:82px; margin-left:-130px; margin-top:-41px; }
 
-      /* Profiles â stack vertically */
+      /* Profiles — stack vertically */
       #page-profiles { padding:1.5rem 1rem; justify-content:center; }
       .section-eyebrow { margin-bottom:1.5rem; font-size:.55rem; }
       .profiles-container { flex-direction:column; align-items:center; gap:1.5rem; max-width:100%; }
@@ -267,7 +267,7 @@
       .profile-role { font-size:.6rem; }
       .profile-bio { font-size:.75rem; max-width:180px; }
 
-      /* Skills â single column stacked */
+      /* Skills — single column stacked */
       #page-skills { flex-direction:column; }
       .skills-left { flex:1; height:auto; padding:2rem 1.2rem 1rem; justify-content:flex-start; overflow-y:auto; }
       .skills-right { flex:0 0 35%; min-height:35%; }
@@ -280,9 +280,9 @@
       .skills-header { margin-bottom:1rem; }
     }
 
-    /* ââ PAGE 3 â PORTFOLIO ââ */
+    /* ══ PAGE 3 — PORTFOLIO ══ */
     #page-portfolio {
-      background: #020814;
+      background: #08010f;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -294,7 +294,7 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       pointer-events: none; z-index: 0;
-      opacity: .55;
+      opacity: .3;
     }
 
     .portfolio-header {
@@ -306,19 +306,19 @@
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(1.6rem, 4vw, 2.6rem);
       font-weight: 900; letter-spacing: .2em;
-      background: linear-gradient(135deg, #fff 0%, #88ccff 50%, #0088ff 100%);
+      background: linear-gradient(135deg, #fff 0%, #cc99ff 50%, #9933ff 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       margin-bottom: .4rem;
     }
     .port-sub {
       font-size: .65rem; letter-spacing: .4rem;
-      text-transform: uppercase; color: rgba(0, 170, 255, .45);
+      text-transform: uppercase; color: rgba(180, 100, 255, .5);
     }
 
     /* Row of folders */
     .categories-row {
       display: flex; align-items: flex-end; justify-content: center;
-      gap: clamp(.8rem, 2vw, 2rem);
+      gap: clamp(.6rem, 1.8vw, 1.8rem);
       position: relative; z-index: 2;
       padding: 0 1rem;
       flex-wrap: nowrap;
@@ -331,36 +331,39 @@
       position: relative;
       flex-shrink: 0;
       width: clamp(90px, 12vw, 148px);
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
     .folder-body {
       width: 100%;
       aspect-ratio: 5/4;
-      border-radius: 10px;
-      background: linear-gradient(145deg, rgba(0,90,200,.22) 0%, rgba(0,40,120,.35) 100%);
-      border: 1px solid rgba(0,170,255,.3);
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(110,40,230,.5) 0%, rgba(70,10,180,.65) 100%);
+      border: 1px solid rgba(160,80,255,.35);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       position: relative;
       transition: border-color .3s, box-shadow .3s, transform .3s;
-      box-shadow: 0 0 20px rgba(0,120,255,.08), inset 0 0 20px rgba(0,80,180,.05);
+      box-shadow: 0 0 24px rgba(120,40,255,.12), inset 0 0 20px rgba(90,20,200,.1);
     }
     /* Tab on folder */
     .folder-body::before {
       content: '';
       position: absolute;
-      top: -8px; left: 12px;
-      width: 38%; height: 8px;
-      background: linear-gradient(to right, rgba(0,120,255,.4), rgba(0,60,160,.3));
+      top: -8px; left: 14px;
+      width: 36%; height: 8px;
+      background: linear-gradient(to right, rgba(140,60,255,.6), rgba(90,20,200,.4));
       border-radius: 4px 4px 0 0;
-      border: 1px solid rgba(0,170,255,.3);
+      border: 1px solid rgba(160,80,255,.35);
       border-bottom: none;
     }
 
     .cat-folder:hover .folder-body {
-      border-color: rgba(0,200,255,.7);
-      box-shadow: 0 0 30px rgba(0,150,255,.25), 0 0 60px rgba(0,100,255,.1), inset 0 0 20px rgba(0,120,255,.1);
-      transform: translateY(-4px);
+      border-color: rgba(200,120,255,.85);
+      box-shadow: 0 0 36px rgba(160,80,255,.35), 0 0 70px rgba(120,40,255,.15), inset 0 0 24px rgba(140,60,255,.15);
+      transform: translateY(-6px);
     }
 
     .folder-icon { width: 52%; margin-bottom: .5rem; }
@@ -371,20 +374,20 @@
     }
     .folder-dots span {
       width: 5px; height: 5px; border-radius: 50%;
-      background: rgba(0,170,255,.35);
+      background: rgba(180,100,255,.4);
     }
-    .cat-folder:hover .folder-dots span { background: rgba(0,220,255,.8); }
+    .cat-folder:hover .folder-dots span { background: rgba(220,160,255,.9); }
 
     .cat-name {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(.55rem, 1vw, .78rem);
       font-weight: 700; letter-spacing: .05em;
-      color: rgba(180,220,255,.85); text-align: center;
+      color: rgba(255,255,255,.92); text-align: center;
       margin-top: .75rem;
     }
     .cat-desc {
       font-size: clamp(.48rem, .8vw, .62rem);
-      color: rgba(0,170,255,.5); text-align: center;
+      color: rgba(180,100,255,.6); text-align: center;
       letter-spacing: .03em; margin-top: .15rem;
     }
 
@@ -402,10 +405,10 @@
       position: absolute;
       bottom: 0; left: 50%;
       width: 100px; height: 80px;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
-      border: 1.5px solid rgba(0,170,255,.4);
-      box-shadow: 0 4px 20px rgba(0,0,0,.5);
+      border: 1.5px solid rgba(160,80,255,.5);
+      box-shadow: 0 4px 20px rgba(0,0,0,.6), 0 0 12px rgba(120,40,255,.2);
       transform-origin: bottom center;
       transform: translateX(-50%) rotate(0deg) translateY(0px);
       transition: transform .4s cubic-bezier(.25,.46,.45,.94), opacity .4s ease;
@@ -430,27 +433,50 @@
     .lightbox.open { opacity: 1; pointer-events: all; }
     .lb-backdrop {
       position: absolute; inset: 0;
-      background: rgba(0,5,20,.92);
-      backdrop-filter: blur(8px);
+      background: rgba(5,0,18,.93);
+      backdrop-filter: blur(10px);
     }
     .lb-img {
       position: relative; z-index: 1;
       max-width: 88vw; max-height: 85vh;
-      border-radius: 12px;
-      border: 1px solid rgba(0,170,255,.3);
-      box-shadow: 0 0 60px rgba(0,100,255,.3);
+      border-radius: 14px;
+      border: 1px solid rgba(160,80,255,.4);
+      box-shadow: 0 0 70px rgba(120,40,255,.35);
       object-fit: contain;
     }
     .lb-close, .lb-prev, .lb-next {
       position: absolute; z-index: 2;
-      background: rgba(0,80,200,.3); border: 1px solid rgba(0,170,255,.4);
+      background: rgba(90,20,180,.4); border: 1px solid rgba(160,80,255,.5);
       color: #fff; border-radius: 50%;
       cursor: pointer; transition: background .2s;
     }
     .lb-close { top: 1.5rem; right: 1.5rem; width: 42px; height: 42px; font-size: 1rem; }
     .lb-prev  { left: 1.5rem;  top: 50%; transform: translateY(-50%); width: 48px; height: 48px; font-size: 1.6rem; }
     .lb-next  { right: 1.5rem; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; font-size: 1.6rem; }
-    .lb-close:hover, .lb-prev:hover, .lb-next:hover { background: rgba(0,120,255,.5); }
+    .lb-close:hover, .lb-prev:hover, .lb-next:hover { background: rgba(130,40,255,.55); }
+
+    /* ── MOBILE RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .categories-row {
+        gap: .5rem;
+        padding: 0 .75rem;
+        overflow-x: auto;
+        justify-content: flex-start;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: .5rem;
+      }
+      .categories-row::-webkit-scrollbar { display: none; }
+      .cat-folder { width: clamp(78px, 22vw, 108px); }
+      .card-fan { width: 150px; height: 120px; }
+      .fan-card { width: 75px; height: 60px; }
+      .portfolio-header { margin-bottom: 1.4rem; }
+      .port-sub { font-size: .52rem; letter-spacing: .22rem; }
+      .port-title { font-size: clamp(1.4rem, 7vw, 2rem); }
+      .lb-prev { left: .5rem; width: 38px; height: 38px; font-size: 1.2rem; }
+      .lb-next { right: .5rem; width: 38px; height: 38px; font-size: 1.2rem; }
+    }
 
     @media (max-width:480px) {
       .hero-title { font-size:clamp(2.2rem,13vw,4rem); }
@@ -458,6 +484,9 @@
       .sil-wrap { width:min(110px,30vw); height:min(125px,34vw); }
       .profile-name { font-size:1rem; }
       .profile-bio { font-size:.72rem; max-width:155px; }
+      .cat-folder { width: clamp(72px, 20vw, 95px); }
+      .cat-name { font-size: .5rem; }
+      .cat-desc { font-size: .42rem; }
     }
   </style>
 </head>
@@ -486,7 +515,7 @@
 <canvas id="starfield"></canvas>
 <div id="orb-bloom"></div>
 
-<!-- ââ PAGE 0 â HERO ââ -->
+<!-- ══ PAGE 0 — HERO ══ -->
 <section id="page-hero" class="page">
   <div id="orb-wrap"><div class="orb-ring"></div><div class="orb"></div></div>
   <img class="hands-img" src="hands-asset.png" alt="" />
@@ -495,7 +524,7 @@
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
 
-<!-- ââ PAGE 1 â PROFILES ââ -->
+<!-- ══ PAGE 1 — PROFILES ══ -->
 <section id="page-profiles" class="page">
   <p class="section-eyebrow">The Creators</p>
   <div class="profiles-container">
@@ -532,7 +561,7 @@
   <div class="page-nav" id="nav-to-skills"><span>Skills</span><div class="arrow"></div></div>
 </section>
 
-<!-- ââ PAGE 2 â SKILLS ââ -->
+<!-- ══ PAGE 2 — SKILLS ══ -->
 <section id="page-skills" class="page">
 
   <!-- LEFT: skill list with logos -->
@@ -551,7 +580,7 @@
 
 </section>
 
-<!-- ââ PAGE 3 â PORTFOLIO ââ -->
+<!-- ══ PAGE 3 — PORTFOLIO ══ -->
 <section id="page-portfolio" class="page">
 
   <!-- Neon map grid canvas -->
@@ -559,16 +588,13 @@
 
   <div class="portfolio-header">
     <h2 class="port-title">OUR WORK</h2>
-    <p class="port-sub">Hover a category to explore</p>
+    <p class="port-sub">Tap a folder to explore</p>
   </div>
 
   <div class="categories-row" id="categories-row">
 
     <div class="cat-folder" data-cat="logo">
       <div class="folder-body">
-        <div class="folder-icon">
-          <svg viewBox="0 0 40 32" fill="none"><polygon points="0,6 14,6 18,2 40,2 40,30 0,30" fill="rgba(0,170,255,0.12)" stroke="rgba(0,170,255,0.6)" stroke-width="1.5"/><path d="M8 16 L32 16 M8 21 L24 21" stroke="rgba(0,170,255,0.5)" stroke-width="1.2" stroke-linecap="round"/></svg>
-        </div>
         <div class="folder-dots"><span></span><span></span><span></span></div>
       </div>
       <p class="cat-name">Logo Design</p>
@@ -578,9 +604,6 @@
 
     <div class="cat-folder" data-cat="brand">
       <div class="folder-body">
-        <div class="folder-icon">
-          <svg viewBox="0 0 40 32" fill="none"><polygon points="0,6 14,6 18,2 40,2 40,30 0,30" fill="rgba(0,170,255,0.12)" stroke="rgba(0,170,255,0.6)" stroke-width="1.5"/><rect x="10" y="12" width="20" height="12" rx="2" fill="none" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/><circle cx="20" cy="18" r="3" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/></svg>
-        </div>
         <div class="folder-dots"><span></span><span></span><span></span></div>
       </div>
       <p class="cat-name">Brand Identity</p>
@@ -590,9 +613,6 @@
 
     <div class="cat-folder" data-cat="packaging">
       <div class="folder-body">
-        <div class="folder-icon">
-          <svg viewBox="0 0 40 32" fill="none"><polygon points="0,6 14,6 18,2 40,2 40,30 0,30" fill="rgba(0,170,255,0.12)" stroke="rgba(0,170,255,0.6)" stroke-width="1.5"/><path d="M20 8 L28 13 L28 22 L20 27 L12 22 L12 13 Z M20 8 L20 27 M12 13 L28 13" stroke="rgba(0,170,255,0.5)" stroke-width="1.2" fill="none"/></svg>
-        </div>
         <div class="folder-dots"><span></span><span></span><span></span></div>
       </div>
       <p class="cat-name">Packaging</p>
@@ -602,9 +622,6 @@
 
     <div class="cat-folder" data-cat="social">
       <div class="folder-body">
-        <div class="folder-icon">
-          <svg viewBox="0 0 40 32" fill="none"><polygon points="0,6 14,6 18,2 40,2 40,30 0,30" fill="rgba(0,170,255,0.12)" stroke="rgba(0,170,255,0.6)" stroke-width="1.5"/><circle cx="12" cy="16" r="4" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/><circle cx="28" cy="10" r="4" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/><circle cx="28" cy="22" r="4" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/><line x1="16" y1="14" x2="24" y2="12" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/><line x1="16" y1="18" x2="24" y2="20" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/></svg>
-        </div>
         <div class="folder-dots"><span></span><span></span><span></span></div>
       </div>
       <p class="cat-name">Social &amp; Email</p>
@@ -614,9 +631,6 @@
 
     <div class="cat-folder" data-cat="print">
       <div class="folder-body">
-        <div class="folder-icon">
-          <svg viewBox="0 0 40 32" fill="none"><polygon points="0,6 14,6 18,2 40,2 40,30 0,30" fill="rgba(0,170,255,0.12)" stroke="rgba(0,170,255,0.6)" stroke-width="1.5"/><rect x="8" y="8" width="24" height="18" rx="2" fill="none" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/><rect x="12" y="4" width="16" height="8" rx="1" fill="none" stroke="rgba(0,170,255,0.5)" stroke-width="1"/><rect x="12" y="19" width="16" height="5" rx="1" fill="rgba(0,170,255,0.15)" stroke="rgba(0,170,255,0.4)" stroke-width="1"/></svg>
-        </div>
         <div class="folder-dots"><span></span><span></span><span></span></div>
       </div>
       <p class="cat-name">Print &amp; Large Format</p>
@@ -626,9 +640,6 @@
 
     <div class="cat-folder" data-cat="web">
       <div class="folder-body">
-        <div class="folder-icon">
-          <svg viewBox="0 0 40 32" fill="none"><polygon points="0,6 14,6 18,2 40,2 40,30 0,30" fill="rgba(0,170,255,0.12)" stroke="rgba(0,170,255,0.6)" stroke-width="1.5"/><rect x="8" y="10" width="24" height="16" rx="2" fill="none" stroke="rgba(0,170,255,0.5)" stroke-width="1.2"/><line x1="8" y1="14" x2="32" y2="14" stroke="rgba(0,170,255,0.4)" stroke-width="1"/><circle cx="11" cy="12" r="1" fill="rgba(0,170,255,0.6)"/><circle cx="14" cy="12" r="1" fill="rgba(0,170,255,0.6)"/><circle cx="17" cy="12" r="1" fill="rgba(0,170,255,0.6)"/></svg>
-        </div>
         <div class="folder-dots"><span></span><span></span><span></span></div>
       </div>
       <p class="cat-name">Website Design</p>
@@ -641,16 +652,16 @@
   <!-- Lightbox -->
   <div id="lightbox" class="lightbox">
     <div class="lb-backdrop"></div>
-    <button class="lb-close">â</button>
-    <button class="lb-prev">â¹</button>
-    <button class="lb-next">âº</button>
+    <button class="lb-close">✕</button>
+    <button class="lb-prev">‹</button>
+    <button class="lb-next">›</button>
     <img class="lb-img" src="" alt="" />
   </div>
 
 </section>
 
 <script>
-/* ââ INIT PAGES ââ */
+/* ── INIT PAGES ── */
 (function(){
   document.getElementById('page-hero').className      = 'page current';
   document.getElementById('page-profiles').className  = 'page below';
@@ -658,7 +669,7 @@
   document.getElementById('page-portfolio').className = 'page below';
 })();
 
-/* ââ STARFIELD ââ */
+/* ── STARFIELD ── */
 const canvas=document.getElementById('starfield'),ctx=canvas.getContext('2d');
 let stars=[],W,H,frame=0;
 function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
@@ -667,7 +678,7 @@ function drawStars(){ctx.clearRect(0,0,W,H);frame+=.016;stars.forEach(s=>{const 
 window.addEventListener('resize',()=>{resize();initStars();});
 resize();initStars();drawStars();
 
-/* ââ SKILLS DATA ââ */
+/* ── SKILLS DATA ── */
 const SKILLS = [
   { name:'Photoshop',     icon:'https://cdn.simpleicons.org/adobephotoshop/ffffff' },
   { name:'Illustrator',   icon:'https://cdn.simpleicons.org/adobeillustrator/ffffff' },
@@ -702,7 +713,7 @@ SKILLS.forEach((s,i)=>{
   list.appendChild(row);
 });
 
-/* ââ PAGE STATE ââ */
+/* ── PAGE STATE ── */
 let currentPage=0, isAnimating=false;
 const bloom=document.getElementById('orb-bloom');
 const handsImg=document.querySelector('.hands-img');
@@ -712,7 +723,7 @@ const heroSub=document.querySelector('.hero-sub');
 const PAGE_IDS=['page-hero','page-profiles','page-skills','page-portfolio'];
 function setPage(idx,cls){document.getElementById(PAGE_IDS[idx]).className='page '+cls;}
 
-/* 0â1 */
+/* 0→1 */
 function heroToProfiles(){
   isAnimating=true;
   const diag=Math.sqrt(W*W+H*H), tgt=(diag/260)*2.4;
@@ -735,7 +746,7 @@ function heroToProfiles(){
   },680);
 }
 
-/* 1â0 */
+/* 1→0 */
 function profilesToHero(){
   isAnimating=true;
   document.getElementById('profile-egoo').classList.remove('approached');
@@ -753,7 +764,7 @@ function profilesToHero(){
   setTimeout(()=>{ isAnimating=false; },950);
 }
 
-/* 1â2 */
+/* 1→2 */
 function profilesToSkills(){
   isAnimating=true;
   setPage(1,'above'); setPage(2,'current'); currentPage=2;
@@ -762,7 +773,7 @@ function profilesToSkills(){
   setTimeout(()=>{ isAnimating=false; },1000);
 }
 
-/* 2â1 */
+/* 2→1 */
 function skillsToProfiles(){
   isAnimating=true;
   document.querySelectorAll('.skill-row').forEach(el=>el.classList.remove('visible'));
@@ -770,14 +781,14 @@ function skillsToProfiles(){
   setTimeout(()=>{ isAnimating=false; },1000);
 }
 
-/* 2â3 */
+/* 2→3 */
 function skillsToPortfolio(){
   isAnimating=true;
   setPage(2,'above'); setPage(3,'current'); currentPage=3;
   initMapGrid();
   setTimeout(()=>{ isAnimating=false; },1000);
 }
-/* 3â2 */
+/* 3→2 */
 function portfolioToSkills(){
   isAnimating=true;
   setPage(3,'below'); setPage(2,'current'); currentPage=2;
@@ -787,7 +798,7 @@ function portfolioToSkills(){
 function goForward(){ if(!isAnimating){ if(currentPage===0)heroToProfiles(); else if(currentPage===1)profilesToSkills(); else if(currentPage===2)skillsToPortfolio(); } }
 function goBack(){    if(!isAnimating){ if(currentPage===1)profilesToHero(); else if(currentPage===2)skillsToProfiles(); else if(currentPage===3)portfolioToSkills(); } }
 
-/* ââ INPUT ââ */
+/* ── INPUT ── */
 let wAccum=0, wTimer=null;
 window.addEventListener('wheel',e=>{
   e.preventDefault();
@@ -811,9 +822,9 @@ window.addEventListener('touchend',e=>{
 
 document.getElementById('nav-to-skills').addEventListener('click',goForward);
 
-/* ââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════
    NEON MAP GRID
-ââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════ */
 function initMapGrid() {
   const mc = document.getElementById('map-grid');
   if (!mc) return;
@@ -867,9 +878,9 @@ function initMapGrid() {
   }
 }
 
-/* ââââââââââââââââââââââââââââââââââ
+/* ══════════════════════════════════
    PORTFOLIO DATA
-ââââââââââââââââââââââââââââââââââ */
+══════════════════════════════════ */
 const PORTFOLIO = {
   logo: [
     'designs/bobby/ACMHN Logo.jpeg',
@@ -1010,7 +1021,7 @@ Object.entries(PORTFOLIO).forEach(([cat, files]) => {
     img.loading = 'lazy';
     card.appendChild(img);
 
-    // Click â open lightbox on that category
+    // Click → open lightbox on that category
     card.addEventListener('click', (e) => {
       e.stopPropagation();
       openLightbox(cat, files.indexOf(src) >= 0 ? files.indexOf(src) : 0, files);
@@ -1020,40 +1031,68 @@ Object.entries(PORTFOLIO).forEach(([cat, files]) => {
   });
 });
 
-/* Animate fan on folder hover */
+/* Animate fan on folder hover + click/touch to open lightbox */
 document.querySelectorAll('.cat-folder').forEach(folder => {
   const fan = folder.querySelector('.card-fan');
   const cards = fan ? fan.querySelectorAll('.fan-card') : [];
   const total = cards.length;
   const spread = 32;
 
-  folder.addEventListener('mouseenter', () => {
+  function spreadFan() {
     cards.forEach((card, i) => {
       const angle = (i - (total-1)/2) * (spread / Math.max(total-1,1));
       const lift  = Math.cos((i-(total-1)/2) / (total/2) * Math.PI * 0.5) * 30;
+      card.style.opacity = '1';
+      card.style.pointerEvents = 'all';
       card.style.transform = `translateX(calc(-50% + ${(i-(total-1)/2)*18}px)) rotate(${angle}deg) translateY(-${40+lift}px)`;
       card.style.transitionDelay = `${i * 0.04}s`;
       card.style.zIndex = i + 1;
     });
-  });
+  }
 
-  folder.addEventListener('mouseleave', () => {
+  function collapseFan() {
     cards.forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.pointerEvents = 'none';
       card.style.transform = `translateX(-50%) rotate(0deg) translateY(0px)`;
       card.style.transitionDelay = `${(total-1-i) * 0.03}s`;
     });
-  });
+  }
 
-  // Click folder to open lightbox at first image
+  folder.addEventListener('mouseenter', spreadFan);
+  folder.addEventListener('mouseleave', collapseFan);
+
+  // Click or tap anywhere on folder opens lightbox
   folder.addEventListener('click', (e) => {
-    if (e.target.classList.contains('fan-card') || e.target.tagName === 'IMG') return;
     const cat = folder.dataset.cat;
     const files = PORTFOLIO[cat];
-    if (files && files.length) openLightbox(cat, 0, files);
+    if (!files || !files.length) return;
+    // If they clicked a specific fan card, open at that image
+    const card = e.target.closest('.fan-card');
+    if (card) {
+      const src = card.dataset.src;
+      const idx = files.indexOf(src);
+      openLightbox(cat, idx >= 0 ? idx : 0, files);
+    } else {
+      openLightbox(cat, 0, files);
+    }
   });
+
+  // Touch: brief fan spread then open
+  folder.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    spreadFan();
+    const cat = folder.dataset.cat;
+    const files = PORTFOLIO[cat];
+    if (!files || !files.length) return;
+    setTimeout(() => {
+      collapseFan();
+      openLightbox(cat, 0, files);
+    }, 350);
+  }, { passive: false });
 });
 
-/* ââ LIGHTBOX ââ */
+/* ══ LIGHTBOX ══ */
 let lbFiles = [], lbIdx = 0;
 const lb = document.getElementById('lightbox');
 const lbImg = lb.querySelector('.lb-img');
