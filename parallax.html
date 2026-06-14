@@ -243,8 +243,8 @@
 
     /* ── RESPONSIVE / MOBILE ── */
     @media (max-width:768px) {
-      /* Fix pages to use full dynamic viewport */
-      .page { position:fixed; inset:0; height:100%; height:100dvh; }
+      /* Fix pages to use full dynamic viewport + clip overflow so next page never bleeds through */
+      .page { position:fixed; inset:0; height:100%; height:100dvh; overflow:hidden; }
 
       /* Hero */
       .hero-title { font-size:clamp(2.6rem,15vw,5rem); }
@@ -260,7 +260,7 @@
       .sil-wrap { width:min(140px,38vw); height:min(160px,43vw); }
       #profile-egoo .sil-wrap { transform:translateX(-40px); }
       #profile-egoo.approached .sil-wrap { transform:translateX(0); }
-      #nyx-sil-wrap { transform:translateX(40px) !important; }
+      #nyx-sil-wrap { transform:translateX(0) !important; }
       .profile-card { flex-direction:row; gap:1rem; max-width:100%; align-items:center; text-align:left; }
       .profile-info { text-align:left; }
       .profile-name { font-size:1.2rem; }
@@ -578,8 +578,8 @@
       color: rgba(200,200,220,.45);
       line-height: 1.5;
     }
-    @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2,1fr); } #page-services { overflow-y: auto; } }
-    @media (max-width: 560px) { .services-grid { grid-template-columns: 1fr; } .services-inner { padding: 1.5rem 1rem; } }
+    @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2,1fr); } #page-services { overflow-y: auto; overflow-x: hidden; } }
+    @media (max-width: 560px) { .services-grid { grid-template-columns: repeat(2,1fr); gap: .6rem; } .services-inner { padding: 1rem .75rem; } .svc-card { padding: .8rem .9rem; } .svc-card-title { font-size: .72rem; } .svc-card-desc { font-size: .6rem; } }
 
     /* ══ PAGE 5 — CONTACT ══ */
     #page-contact {
@@ -684,14 +684,15 @@
     }
     .footer-copy { font-size: .65rem; color: rgba(255,255,255,.3); letter-spacing: .05em; }
     @media (max-width: 768px) {
-      .contact-body { flex-direction: column; gap: 2rem; padding: 2rem 1.5rem; }
+      #page-contact { overflow-y: auto; overflow-x: hidden; }
+      .contact-body { flex-direction: column; gap: 1.2rem; padding: 1.5rem 1.2rem 1rem; }
       .contact-left { max-width: 100%; flex: none; }
-      .contact-right { min-width: unset; }
-      .orbital-wrap { width: 200px; height: 200px; }
-      .orbital-ring:nth-child(1) { width: 200px; height: 200px; }
-      .orbital-ring:nth-child(2) { width: 140px; height: 140px; }
-      .orbital-ring:nth-child(3) { width: 85px; height: 85px; }
+      .contact-right { display: none; } /* hide orbital — too tall for mobile */
       .contact-footer { padding: .8rem 1.2rem; }
+      .contact-title { font-size: clamp(1.5rem, 7vw, 2rem); margin-bottom: .6rem; }
+      .contact-sub { margin-bottom: 1.2rem; font-size: .8rem; }
+      .contact-card { padding: .75rem 1rem; }
+      .contact-info-value { font-size: .82rem; }
     }
 
     /* ── GALLERY OVERLAY ── */
@@ -760,18 +761,16 @@
 
     /* ── MOBILE RESPONSIVE ── */
     @media (max-width: 768px) {
+      /* 2-row grid: 3 folders per row */
       .categories-row {
-        gap: .5rem;
-        padding: 0 .75rem;
-        overflow-x: auto;
-        justify-content: flex-start;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: hidden;
+        gap: .9rem .5rem;
+        padding: 0 .75rem .5rem;
         width: 100%;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding-bottom: .5rem;
       }
-      .categories-row::-webkit-scrollbar { display: none; }
-      .cat-folder { width: clamp(78px, 22vw, 108px); }
+      .cat-folder { width: calc(33.33% - .5rem); min-width: 88px; }
       .card-fan { width: 150px; height: 120px; }
       .fan-card { width: 75px; height: 60px; }
       .portfolio-header { margin-bottom: 1.4rem; }
