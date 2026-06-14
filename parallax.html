@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width:100%; height:100%; background:#000; color:#fff; font-family:'Space Grotesk',sans-serif; overflow:hidden; }
+    html, body { width:100%; height:100%; background:#000; color:#fff; font-family:'Space Grotesk',sans-serif; overflow:hidden; overscroll-behavior:none; }
     /* Mobile: use dynamic viewport height to fix iOS 100vh bug */
     @supports (height: 100dvh) {
       html, body { height: 100dvh; }
@@ -253,7 +253,7 @@
       .orb-ring { width:260px; height:82px; margin-left:-130px; margin-top:-41px; }
 
       /* Profiles — stack vertically */
-      #page-profiles { padding:1.5rem 1rem; justify-content:center; }
+      #page-profiles { padding:1.5rem 1rem; justify-content:center; overflow-y:auto; overscroll-behavior-y:contain; }
       .section-eyebrow { margin-bottom:1.5rem; font-size:.55rem; }
       /* Center each card with equal whitespace left and right */
       .profiles-container { flex-direction:column; align-items:center; gap:1.5rem; max-width:100%; padding:0; }
@@ -582,7 +582,7 @@
     @media (max-width: 900px) {
       .services-grid { grid-template-columns: repeat(2,1fr); }
       /* justify-content:flex-start so scroll begins at header, not mid-cards */
-      #page-services { overflow-y: auto; overflow-x: hidden; justify-content: flex-start; align-items: center; }
+      #page-services { overflow-y: auto; overflow-x: hidden; justify-content: flex-start; align-items: center; overscroll-behavior-y: contain; }
     }
     @media (max-width: 560px) { .services-grid { grid-template-columns: repeat(2,1fr); gap: .6rem; } .services-inner { padding: 1.5rem .75rem 1rem; } .svc-card { padding: .8rem .9rem; } .svc-card-title { font-size: .72rem; } .svc-card-desc { font-size: .6rem; } }
 
@@ -689,7 +689,7 @@
     }
     .footer-copy { font-size: .65rem; color: rgba(255,255,255,.3); letter-spacing: .05em; }
     @media (max-width: 768px) {
-      #page-contact { overflow-y: auto; overflow-x: hidden; }
+      #page-contact { overflow-y: auto; overflow-x: hidden; overscroll-behavior-y: contain; }
       .contact-body { flex-direction: column; gap: 1.2rem; padding: 1.5rem 1.2rem 1rem; }
       .contact-left { max-width: 100%; flex: none; }
       .contact-right { display: none; } /* hide orbital — too tall for mobile */
@@ -1351,11 +1351,30 @@ document.addEventListener('keydown',e=>{
 /* touch swipe */
 let tStartY=0,tStartX=0;
 window.addEventListener('touchstart',e=>{tStartY=e.touches[0].clientY;tStartX=e.touches[0].clientX;},{passive:true});
+
+/* Block pull-to-refresh and native scroll-bounce on non-scrollable pages */
+window.addEventListener('touchmove',e=>{
+  if(galleryEl.classList.contains('open')||lb.classList.contains('open'))return;
+  const curEl=document.getElementById(PAGE_IDS[currentPage]);
+  if(!curEl)return;
+  const canScroll=curEl.scrollHeight>curEl.clientHeight+2;
+  if(!canScroll){
+    e.preventDefault(); /* page has nothing to scroll — block pull-to-refresh */
+    return;
+  }
+  /* Page is scrollable — only block overscroll at edges */
+  const atTop=curEl.scrollTop<=0;
+  const atBottom=curEl.scrollTop+curEl.clientHeight>=curEl.scrollHeight-2;
+  const dy=tStartY-e.touches[0].clientY;
+  if(atTop&&dy<0) e.preventDefault();    /* pulling down at top = pull-to-refresh, block */
+  if(atBottom&&dy>0) e.preventDefault(); /* pushing up at bottom = bounce, block */
+},{passive:false});
+
 window.addEventListener('touchend',e=>{
   if(galleryEl.classList.contains('open')||lb.classList.contains('open'))return;
   const dy=tStartY-e.changedTouches[0].clientY;
   const dx=Math.abs(tStartX-e.changedTouches[0].clientX);
-  if(dx>Math.abs(dy)||Math.abs(dy)<40)return;
+  if(dx>Math.abs(dy)||Math.abs(dy)<45)return;
   /* Don't navigate if the current page still has internal scroll room */
   const curEl=document.getElementById(PAGE_IDS[currentPage]);
   if(curEl){
