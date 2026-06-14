@@ -299,29 +299,40 @@
 
     .portfolio-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 5rem;
       position: relative; z-index: 2;
+      width: 100%;
+      padding: 0 2rem;
+      box-sizing: border-box;
+    }
+    .port-label {
+      font-size: .65rem; letter-spacing: .4rem;
+      text-transform: uppercase; color: rgba(180, 100, 255, .7);
+      margin-bottom: .7rem;
+      font-weight: 600;
     }
     .port-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 900; letter-spacing: .2em;
-      background: linear-gradient(135deg, #fff 0%, #cc99ff 50%, #9933ff 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      margin-bottom: .4rem;
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      font-weight: 900; letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: 1.2rem;
     }
     .port-sub {
-      font-size: .65rem; letter-spacing: .4rem;
-      text-transform: uppercase; color: rgba(180, 100, 255, .5);
+      font-size: clamp(.75rem, 1.2vw, .95rem);
+      color: rgba(200, 200, 220, .4);
+      letter-spacing: .02em;
     }
 
     /* Row of folders */
     .categories-row {
       display: flex; align-items: flex-end; justify-content: center;
-      gap: clamp(1rem, 2.5vw, 2.8rem);
+      gap: clamp(.8rem, 2vw, 2.2rem);
       position: relative; z-index: 2;
       padding: 0 2rem;
       flex-wrap: nowrap;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     /* Each folder */
@@ -330,7 +341,7 @@
       cursor: pointer;
       position: relative;
       flex-shrink: 0;
-      width: clamp(120px, 14vw, 185px);
+      width: clamp(108px, 13vw, 165px);
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
@@ -380,15 +391,17 @@
 
     .cat-name {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(.65rem, 1.1vw, .92rem);
-      font-weight: 700; letter-spacing: .05em;
+      font-size: clamp(.58rem, .95vw, .82rem);
+      font-weight: 700; letter-spacing: .03em;
       color: rgba(255,255,255,.92); text-align: center;
       margin-top: .85rem;
+      white-space: nowrap;
     }
     .cat-desc {
-      font-size: clamp(.55rem, .9vw, .72rem);
+      font-size: clamp(.5rem, .8vw, .66rem);
       color: rgba(180,100,255,.6); text-align: center;
-      letter-spacing: .03em; margin-top: .2rem;
+      letter-spacing: .02em; margin-top: .2rem;
+      white-space: nowrap;
     }
 
     /* Fan of cards that spreads on hover */
@@ -455,6 +468,70 @@
     .lb-next  { right: 1.5rem; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; font-size: 1.6rem; }
     .lb-close:hover, .lb-prev:hover, .lb-next:hover { background: rgba(130,40,255,.55); }
 
+    /* ── GALLERY OVERLAY ── */
+    .gallery-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: #08010f;
+      display: flex; flex-direction: column;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease;
+      overflow-y: auto;
+    }
+    .gallery-overlay.open { opacity: 1; pointer-events: all; }
+    .gallery-header {
+      position: sticky; top: 0;
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.4rem 2rem;
+      background: rgba(8,1,15,.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(160,80,255,.18);
+      z-index: 10;
+    }
+    .gallery-back {
+      background: rgba(90,20,180,.25);
+      border: 1px solid rgba(160,80,255,.45);
+      color: rgba(255,255,255,.85);
+      padding: .45rem 1.1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: .82rem;
+      letter-spacing: .03em;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .gallery-back:hover { background: rgba(130,40,255,.5); color: #fff; }
+    .gallery-htitle {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .04em;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.4rem;
+      padding: 2rem;
+    }
+    .gallery-card {
+      background: rgba(20,5,40,.7);
+      border: 1px solid rgba(160,80,255,.2);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .gallery-card:hover {
+      border-color: rgba(200,120,255,.7);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(120,40,255,.3);
+    }
+    .gallery-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .gallery-card-info { padding: .75rem 1rem .9rem; }
+    .gallery-card-title { font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.9); }
+    .gallery-card-client { font-size: .7rem; color: rgba(180,100,255,.65); margin-top: .15rem; }
+
     /* ── MOBILE RESPONSIVE ── */
     @media (max-width: 768px) {
       .categories-row {
@@ -473,7 +550,10 @@
       .fan-card { width: 75px; height: 60px; }
       .portfolio-header { margin-bottom: 1.4rem; }
       .port-sub { font-size: .52rem; letter-spacing: .22rem; }
-      .port-title { font-size: clamp(1.7rem, 8vw, 2.4rem); }
+      .port-title { font-size: clamp(1.8rem, 9vw, 2.6rem); }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; padding: 1.2rem; }
+      .gallery-header { padding: 1rem 1.2rem; }
+      .gallery-htitle { font-size: .9rem; }
       .lb-prev { left: .5rem; width: 38px; height: 38px; font-size: 1.2rem; }
       .lb-next { right: .5rem; width: 38px; height: 38px; font-size: 1.2rem; }
     }
@@ -587,8 +667,9 @@
   <canvas id="map-grid"></canvas>
 
   <div class="portfolio-header">
+    <p class="port-label">PORTFOLIO</p>
     <h2 class="port-title">OUR WORK</h2>
-    <p class="port-sub">Tap a folder to explore</p>
+    <p class="port-sub">Hover a folder to preview. Click to explore the full collection.</p>
   </div>
 
   <div class="categories-row" id="categories-row">
@@ -647,6 +728,15 @@
       <div class="card-fan" id="fan-web"></div>
     </div>
 
+  </div>
+
+  <!-- Gallery overlay -->
+  <div class="gallery-overlay" id="gallery-overlay">
+    <div class="gallery-header">
+      <button class="gallery-back">← Back</button>
+      <div class="gallery-htitle" id="gallery-htitle"></div>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
   </div>
 
   <!-- Lightbox -->
@@ -803,13 +893,16 @@ let wLocked=false;
 function triggerNav(dir){
   if(wLocked||isAnimating)return;
   wLocked=true;
-  setTimeout(()=>{wLocked=false;},900);
+  setTimeout(()=>{wLocked=false;},1600);
   if(dir>0)goForward(); else goBack();
 }
 
 window.addEventListener('wheel',e=>{
+  // If gallery or lightbox is open, let native scroll work
+  if(galleryEl.classList.contains('open')||lb.classList.contains('open'))return;
   e.preventDefault();
   if(wLocked||isAnimating)return;
+  if(Math.abs(e.deltaY)<8)return;
   if(currentPage===2){
     const sl=document.getElementById('skills-left');
     const atBottom=sl.scrollTop+sl.clientHeight>=sl.scrollHeight-4;
@@ -830,9 +923,10 @@ document.addEventListener('keydown',e=>{
 let tStartY=0,tStartX=0;
 window.addEventListener('touchstart',e=>{tStartY=e.touches[0].clientY;tStartX=e.touches[0].clientX;},{passive:true});
 window.addEventListener('touchend',e=>{
+  if(galleryEl.classList.contains('open')||lb.classList.contains('open'))return;
   const dy=tStartY-e.changedTouches[0].clientY;
   const dx=Math.abs(tStartX-e.changedTouches[0].clientX);
-  if(dx>Math.abs(dy)||Math.abs(dy)<30)return; // ignore horizontal or tiny swipes
+  if(dx>Math.abs(dy)||Math.abs(dy)<30)return;
   triggerNav(dy);
 },{passive:true});
 
@@ -1037,10 +1131,10 @@ Object.entries(PORTFOLIO).forEach(([cat, files]) => {
     img.loading = 'lazy';
     card.appendChild(img);
 
-    // Click → open lightbox on that category
+    // Click → open gallery on that category
     card.addEventListener('click', (e) => {
       e.stopPropagation();
-      openLightbox(cat, files.indexOf(src) >= 0 ? files.indexOf(src) : 0, files);
+      openGallery(cat);
     });
 
     fanEl.appendChild(card);
@@ -1078,36 +1172,96 @@ document.querySelectorAll('.cat-folder').forEach(folder => {
   folder.addEventListener('mouseenter', spreadFan);
   folder.addEventListener('mouseleave', collapseFan);
 
-  // Click or tap anywhere on folder opens lightbox
+  // Click or tap anywhere on folder opens gallery
   folder.addEventListener('click', (e) => {
     const cat = folder.dataset.cat;
     const files = PORTFOLIO[cat];
     if (!files || !files.length) return;
-    // If they clicked a specific fan card, open at that image
     const card = e.target.closest('.fan-card');
     if (card) {
       const src = card.dataset.src;
-      const idx = files.indexOf(src);
-      openLightbox(cat, idx >= 0 ? idx : 0, files);
+      openGallery(cat, files.indexOf(src) >= 0 ? files.indexOf(src) : 0);
     } else {
-      openLightbox(cat, 0, files);
+      openGallery(cat);
     }
   });
 
-  // Touch: tap to open (don't prevent default so page swipes still work)
+  // Touch: tap to open gallery
   let touchStartY = 0;
   folder.addEventListener('touchstart', (e) => {
     touchStartY = e.touches[0].clientY;
   }, { passive: true });
   folder.addEventListener('touchend', (e) => {
     const dy = Math.abs(touchStartY - e.changedTouches[0].clientY);
-    if (dy > 20) return; // was a swipe, ignore
+    if (dy > 20) return;
     spreadFan();
     const cat = folder.dataset.cat;
     const files = PORTFOLIO[cat];
     if (!files || !files.length) return;
-    setTimeout(() => { collapseFan(); openLightbox(cat, 0, files); }, 320);
+    setTimeout(() => { collapseFan(); openGallery(cat); }, 320);
   }, { passive: true });
+});
+
+/* ══ GALLERY ══ */
+const CAT_NAMES = {
+  logo:'Logo Design', brand:'Brand Identity', packaging:'Packaging Design',
+  social:'Social & Email Marketing', print:'Print & Large Format', web:'Website Design'
+};
+const CLIENT_MAP = {
+  'Char.':'Char. Cosmetics','Bombo Boy':'Bombo Boy','Eggo Bazaar':'Eggo F&B',
+  'Everything Tennis':'Everything Tennis','Tennis Event':'Everything Tennis',
+  'Genshinakun':'Genshinakun','Hello Sarnie':'Hello Sarnie','Hella':'Hella',
+  'Raze Energy':'Raze Energy','Strathfield':'Strathfield',
+  'Tarlink Management':'Tarlink Management','Tiki Talk':'Tiki Talk Podcast',
+  'Kiera':'Kiera','Playtours.app':'Playtours.app','ACMHN':'ACMHN',
+  'Akademi FYP':'Akademi FYP','Fresh Food':'Fresh Food','Genesis':'Genesis',
+  'Kang Jono':'Kang Jono','TAPPSTR':'TAPPSTR','Motaero':'Motaero',
+  'Odyssey':'Odyssey','Steve Boon':'Steve Boon',"Lynn's Play Time":"Lynn's Play Time",
+  '3 Virgos 1 Libra':'3 Virgos 1 Libra','Kela Saham':'Kela Saham',
+  'Kounesei Connect':'Kounesei Connect','Vanguard Solidarity':'Vanguard Solidarity',
+  'Byvira':'Byvira','Clookies':'Clookies','Popeyecruise':'Popeyecruise',
+  'SUN Cargo':'SUN Cargo','Hanmin':'Hanmin','Bergeron':'Bergeron',
+  'Halls Creek 4WD':'Halls Creek 4WD','Hunter of Man':'Hunter of Man',
+  'Paws Place':'Paws Place','RedHead Realtor':'RedHead Realtor',
+  "Rocco's":"Rocco's",'Star Moving Solutions':'Star Moving Solutions',
+  'Toyota Genuine Parts':'Toyota Genuine Parts','Aican':'Aican',
+  'BRai':'BRai','DrandrewMa':'DrandrewMa','Environtmental Friendly':'Car Wrap',
+};
+function getFileTitle(src){ return src.split('/').pop().replace(/\.[^.]+$/,''); }
+function getClient(src){
+  const t=getFileTitle(src);
+  for(const [k,v] of Object.entries(CLIENT_MAP)){ if(t.startsWith(k))return v; }
+  return '';
+}
+
+const galleryEl  = document.getElementById('gallery-overlay');
+const galleryGrid= document.getElementById('gallery-grid');
+const galleryHT  = document.getElementById('gallery-htitle');
+const galleryBack= galleryEl.querySelector('.gallery-back');
+
+function openGallery(cat){
+  const files = PORTFOLIO[cat];
+  if(!files||!files.length) return;
+  galleryHT.textContent = CAT_NAMES[cat]||cat;
+  galleryGrid.innerHTML = '';
+  files.forEach((src,i)=>{
+    const card=document.createElement('div'); card.className='gallery-card';
+    const img=document.createElement('img');
+    img.className='gallery-card-img'; img.src=src; img.loading='lazy'; img.alt='';
+    const info=document.createElement('div'); info.className='gallery-card-info';
+    const t=document.createElement('div'); t.className='gallery-card-title'; t.textContent=getFileTitle(src);
+    const c=document.createElement('div'); c.className='gallery-card-client'; c.textContent=getClient(src);
+    info.appendChild(t); if(c.textContent)info.appendChild(c);
+    card.appendChild(img); card.appendChild(info);
+    card.addEventListener('click',()=>openLightbox(cat,i,files));
+    galleryGrid.appendChild(card);
+  });
+  galleryEl.classList.add('open');
+  galleryEl.scrollTop=0;
+}
+galleryBack.addEventListener('click',()=>galleryEl.classList.remove('open'));
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&galleryEl.classList.contains('open'))galleryEl.classList.remove('open');
 });
 
 /* ══ LIGHTBOX ══ */

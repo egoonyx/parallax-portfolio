@@ -299,13 +299,16 @@
 
     .portfolio-header {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 5rem;
       position: relative; z-index: 2;
+      width: 100%;
+      padding: 0 2rem;
+      box-sizing: border-box;
     }
     .port-label {
       font-size: .65rem; letter-spacing: .4rem;
       text-transform: uppercase; color: rgba(180, 100, 255, .7);
-      margin-bottom: .6rem;
+      margin-bottom: .7rem;
       font-weight: 600;
     }
     .port-title {
@@ -313,21 +316,23 @@
       font-size: clamp(2.2rem, 5.5vw, 3.8rem);
       font-weight: 900; letter-spacing: .08em;
       color: #fff;
-      margin-bottom: .8rem;
+      margin-bottom: 1.2rem;
     }
     .port-sub {
-      font-size: clamp(.7rem, 1.3vw, .95rem);
-      color: rgba(200, 200, 220, .45);
+      font-size: clamp(.75rem, 1.2vw, .95rem);
+      color: rgba(200, 200, 220, .4);
       letter-spacing: .02em;
     }
 
     /* Row of folders */
     .categories-row {
       display: flex; align-items: flex-end; justify-content: center;
-      gap: clamp(1rem, 2.5vw, 2.8rem);
+      gap: clamp(.8rem, 2vw, 2.2rem);
       position: relative; z-index: 2;
       padding: 0 2rem;
       flex-wrap: nowrap;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     /* Each folder */
@@ -336,7 +341,7 @@
       cursor: pointer;
       position: relative;
       flex-shrink: 0;
-      width: clamp(120px, 14vw, 185px);
+      width: clamp(108px, 13vw, 165px);
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
@@ -386,15 +391,17 @@
 
     .cat-name {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(.65rem, 1.1vw, .92rem);
-      font-weight: 700; letter-spacing: .05em;
+      font-size: clamp(.58rem, .95vw, .82rem);
+      font-weight: 700; letter-spacing: .03em;
       color: rgba(255,255,255,.92); text-align: center;
       margin-top: .85rem;
+      white-space: nowrap;
     }
     .cat-desc {
-      font-size: clamp(.55rem, .9vw, .72rem);
+      font-size: clamp(.5rem, .8vw, .66rem);
       color: rgba(180,100,255,.6); text-align: center;
-      letter-spacing: .03em; margin-top: .2rem;
+      letter-spacing: .02em; margin-top: .2rem;
+      white-space: nowrap;
     }
 
     /* Fan of cards that spreads on hover */
@@ -891,9 +898,11 @@ function triggerNav(dir){
 }
 
 window.addEventListener('wheel',e=>{
+  // If gallery or lightbox is open, let native scroll work
+  if(galleryEl.classList.contains('open')||lb.classList.contains('open'))return;
   e.preventDefault();
   if(wLocked||isAnimating)return;
-  if(Math.abs(e.deltaY)<8)return; // ignore tiny inertia/momentum scroll events
+  if(Math.abs(e.deltaY)<8)return;
   if(currentPage===2){
     const sl=document.getElementById('skills-left');
     const atBottom=sl.scrollTop+sl.clientHeight>=sl.scrollHeight-4;
@@ -914,9 +923,10 @@ document.addEventListener('keydown',e=>{
 let tStartY=0,tStartX=0;
 window.addEventListener('touchstart',e=>{tStartY=e.touches[0].clientY;tStartX=e.touches[0].clientX;},{passive:true});
 window.addEventListener('touchend',e=>{
+  if(galleryEl.classList.contains('open')||lb.classList.contains('open'))return;
   const dy=tStartY-e.changedTouches[0].clientY;
   const dx=Math.abs(tStartX-e.changedTouches[0].clientX);
-  if(dx>Math.abs(dy)||Math.abs(dy)<30)return; // ignore horizontal or tiny swipes
+  if(dx>Math.abs(dy)||Math.abs(dy)<30)return;
   triggerNav(dy);
 },{passive:true});
 
